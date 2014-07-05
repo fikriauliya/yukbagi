@@ -66,6 +66,9 @@
             %label{for: "lesson_title"} Title
             %input#lesson_title.form-control{name: "lesson[title]", "ng-model" => "newLesson.title", type: "text"}
           .form-group
+            %label{for: "lesson_url"} Url
+            %input#lesson_title.form-control{name: "lesson[url]", "ng-model" => "newLesson.url", type: "text"}
+          .form-group
             %label{for: "lesson_summary"} Summary
             %textarea#lesson_summary.form-control{name: "lesson[summary]", "ng-model" => "newLesson.summary", "rows" => "10"}
         .modal-footer
