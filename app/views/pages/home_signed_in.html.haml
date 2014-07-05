@@ -1,0 +1,72 @@
+.row{'ng-controller' => 'PageCtrl'}
+  .col-md-8
+    .col-md-12
+      =button_tag :class => 'btn btn-primary', 'data-toggle' => "modal", 'data-target' => "#newGroupModal" do
+        %span.glyphicon.glyphicon-plus
+        New group
+      %hr
+    .col-md-4{style: "padding-right:20px; border-right: 1px solid #ccc;"}
+      %ul.nav.nav-pills.nav-stacked
+        %li{'ng-repeat' => 'group in groups', 'ng-class' => "group == selectedGroup ? 'active' : ''"}
+          %a{'ng-click' => 'selectGroup(group)'}
+            {{group.name}}
+            %span.badge.pull-right xx
+    .col-md-8
+      .row
+        .pull-right{'ng-if' => 'selectedGroup'}
+          =button_tag :class => 'btn btn-default', 'data-toggle' => "modal", 'data-target' => "#newLessonModal" do
+            %span.glyphicon.glyphicon-plus
+            New Lesson
+
+      .list-group{'style' => 'margin-top:20px'}
+        %a.list-group-item{'ng-repeat' => 'lesson in lessons'}
+          %b.list-group-item-heading
+            {{lesson.title}}
+          %p.list-group-item-text
+            {{lesson.summary}}
+  .col-md-4
+    %h4 Feed
+
+
+  / Modal
+  #newGroupModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "newGroupModal", role: "dialog", tabindex: "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"data-dismiss" => "modal", type: "button"}
+            %span{"aria-hidden" => "true"} ×
+            %span.sr-only Close
+          %h4#myModalLabel.modal-title New Group
+        .modal-body
+          .form-group
+            %label{for: "group_name"} Name
+            %input#group_name.form-control{name: "group[name]", "ng-model" => "newGroup.name", type: "text"}
+          .form-group
+            %label{for: "group_category"} Category
+            %input#group_category.form-control{name: "group[category]", "ng-model" => "newGroup.category", type: "number"}
+          .form-group
+            %label{for: "group_ordered"} Ordered
+            %input{name: "group[ordered]", type: "hidden", value: "0"}
+            %input#group_ordered.form-control{name: "group[ordered]", "ng-model" => "newGroup.ordered", type: "checkbox", value: "1"}
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+          %button.btn.btn-primary{type: "button", 'ng-click' => 'createGroup()'} Create
+
+  #newLessonModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "newLessonModal", role: "dialog", tabindex: "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"data-dismiss" => "modal", type: "button"}
+            %span{"aria-hidden" => "true"} ×
+            %span.sr-only Close
+          %h4#myModalLabel.modal-title New Lesson
+        .modal-body
+          .form-group
+            %label{for: "lesson_title"} Title
+            %input#lesson_title.form-control{name: "lesson[title]", "ng-model" => "newLesson.title", type: "text"}
+          .form-group
+            %label{for: "lesson_summary"} Summary
+            %input#lesson_summary.form-control{name: "lesson[summary]", "ng-model" => "newLesson.summary", type: "text"}
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
+          %button.btn.btn-primary{type: "button", "ng-click" => 'createLesson()'} Create

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  get 'profiles/:id', :controller => 'profiles', :action => 'show'
+  resources :profiles, only: [:show] do
+    resources :groups do
+      resources :lessons
+    end
+  end
+
+  # get 'profiles/:id', :controller => 'profiles', :action => 'show'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   root to: 'pages#home'

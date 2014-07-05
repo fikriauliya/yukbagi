@@ -1,0 +1,25 @@
+%h1 Listing groups
+
+%table
+  %tr
+    %th User
+    %th Name
+    %th Category
+    %th Ordered
+    %th
+    %th
+    %th
+
+  - @groups.each do |group|
+    %tr
+      %td= group.user_id
+      %td= group.name
+      %td= group.category
+      %td= group.ordered
+      %td= link_to 'Show', [@profile, group]
+      %td= link_to 'Edit', edit_profile_group_path(@profile, group)
+      %td= link_to 'Destroy', [@profile, group], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Group', new_profile_group_path(@profile)
