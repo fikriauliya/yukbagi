@@ -18,18 +18,6 @@ myApp = angular.module('myApp', ['pageServices'])
 myApp.controller('PageCtrl', [
   '$scope', 'Group', 'Lesson',
   ($scope, Group, Lesson) ->
-    $scope.groups = Group.query(
-      () ->
-        console.log($scope.groups)
-        if ($scope.groups.length > 0)
-          # by default, select the first one
-          $scope.selectedGroup = $scope.groups[0]
-          console.log("Selected group: ")
-          console.log($scope.selectedGroup)
-          $scope.refreshLessons()
-    )
-    $scope.newGroup = new Group()
-    $scope.newLesson = new Lesson()
 
     $scope.createGroup = () ->
       console.log("New group")
@@ -39,7 +27,7 @@ myApp.controller('PageCtrl', [
           console.log("Saved, close modal")
           $('#newGroupModal').modal('hide')
 
-          $scope.groups = Group.query()
+          $scope.refreshGroup()
       );
 
     $scope.selectGroup = (group) ->
@@ -61,6 +49,23 @@ myApp.controller('PageCtrl', [
           $scope.refreshLessons()
       )
 
+    $scope.refreshGroup = () ->
+      if ($scope.selectedGroup)
+        selectedGroupIndex = $scope.groups.indexOf($scope.selectedGroup)
+      else
+        selectedGroupIndex = null
+
+      $scope.groups = Group.query(
+        () ->
+          console.log($scope.groups)
+          if (selectedGroupIndex)
+            $scope.selectGroup($scope.groups[selectedGroupIndex])
+          else
+            if ($scope.groups.length > 0)
+              # by default, select the first one
+              $scope.selectGroup($scope.groups[0])
+      )
+
     $scope.refreshLessons = () ->
       $scope.lessons = Lesson.query({profile_id: gon.profile_id, group_id: $scope.selectedGroup.id})
 
@@ -69,4 +74,9 @@ myApp.controller('PageCtrl', [
         () ->
           group.lessons_count = newGroupInfo.lessons_count
       )
+
+    $scope.newGroup = new Group()
+    $scope.newLesson = new Lesson()
+    $scope.selectedGroup = null
+    $scope.refreshGroup()
 ])
