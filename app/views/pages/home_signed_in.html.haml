@@ -66,7 +66,7 @@
             %input#lesson_title.form-control{name: "lesson[title]", "ng-model" => "newLesson.title", type: "text"}
           .form-group
             %label{for: "lesson_summary"} Summary
-            %input#lesson_summary.form-control{name: "lesson[summary]", "ng-model" => "newLesson.summary", type: "text"}
+            %textarea#lesson_summary.form-control{name: "lesson[summary]", "ng-model" => "newLesson.summary", "rows" => "10"}
         .modal-footer
           %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
           %button.btn.btn-primary{type: "button", "ng-click" => 'createLesson()'} Create
