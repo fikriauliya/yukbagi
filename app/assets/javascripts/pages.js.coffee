@@ -57,9 +57,16 @@ myApp.controller('PageCtrl', [
           console.log("Saved, close modal")
           $('#newLessonModal').modal('hide')
 
+          $scope.refreshGroupCounter($scope.selectedGroup)
           $scope.refreshLessons()
       )
 
     $scope.refreshLessons = () ->
       $scope.lessons = Lesson.query({profile_id: gon.profile_id, group_id: $scope.selectedGroup.id})
+
+    $scope.refreshGroupCounter = (group) ->
+      newGroupInfo = Group.get({group_id : group.id},
+        () ->
+          group.lessons_count = newGroupInfo.lessons_count
+      )
 ])

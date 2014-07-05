@@ -6,6 +6,7 @@
     %th Name
     %th Category
     %th Ordered
+    %th Lessons count
     %th
     %th
     %th
@@ -16,6 +17,7 @@
       %td= group.name
       %td= group.category
       %td= group.ordered
+      %td= group.lessons_count
       %td= link_to 'Show', [@profile, group]
       %td= link_to 'Edit', edit_profile_group_path(@profile, group)
       %td= link_to 'Destroy', [@profile, group], :method => :delete, :data => { :confirm => 'Are you sure?' }

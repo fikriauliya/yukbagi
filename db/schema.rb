@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140628095555) do
+ActiveRecord::Schema.define(version: 20140705065354) do
 
   create_table "groups", force: true do |t|
     t.integer  "user_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140628095555) do
     t.boolean  "ordered"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "lessons_count", default: 0
   end
 
   create_table "lessons", force: true do |t|

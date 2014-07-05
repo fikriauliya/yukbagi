@@ -10,7 +10,8 @@
         %li{'ng-repeat' => 'group in groups', 'ng-class' => "group == selectedGroup ? 'active' : ''"}
           %a{'ng-click' => 'selectGroup(group)'}
             {{group.name}}
-            %span.badge.pull-right xx
+            %span.badge.pull-right
+              {{group.lessons_count}}
     .col-md-8
       .row
         .pull-right{'ng-if' => 'selectedGroup'}
