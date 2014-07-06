@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140705072737) do
+ActiveRecord::Schema.define(version: 20140706042419) do
 
   create_table "groups", force: true do |t|
     t.integer  "user_id"
@@ -30,7 +30,12 @@ ActiveRecord::Schema.define(version: 20140705072737) do
     t.integer  "order_no"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "url"
+    t.string   "external_url"
+    t.string   "type"
+    t.string   "provider_name"
+    t.string   "favicon_url"
+    t.string   "description"
+    t.string   "thumbnail_url"
   end
 
   create_table "users", force: true do |t|

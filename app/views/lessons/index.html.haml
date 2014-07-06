@@ -6,6 +6,12 @@
     %th Summary
     %th Group
     %th Order no
+    %th External url
+    %th Type
+    %th Provider name
+    %th Favicon url
+    %th Description
+    %th Thumbnail
     %th
     %th
     %th
@@ -16,6 +22,12 @@
       %td= lesson.summary
       %td= lesson.group_id
       %td= lesson.order_no
+      %td= lesson.external_url
+      %td= lesson.type
+      %td= lesson.provider_name
+      %td= lesson.favicon_url
+      %td= lesson.description
+      %td= lesson.thumbnail
       %td= link_to 'Show', lesson
       %td= link_to 'Edit', edit_lesson_path(lesson)
       %td= link_to 'Destroy', lesson, :method => :delete, :data => { :confirm => 'Are you sure?' }

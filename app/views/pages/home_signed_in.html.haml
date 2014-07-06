@@ -1,3 +1,8 @@
+-content_for :header do
+  %script{src: "http://cdn.embed.ly/jquery.embedly-3.0.5.min.js", type: "text/javascript"}
+  %script{src: "http://cdn.embed.ly/jquery.preview-0.3.2.min.js", type: "text/javascript"}
+  %link{href: "http://cdn.embed.ly/jquery.preview-0.3.2.css", rel: "stylesheet"}
+
 .row{'ng-controller' => 'PageCtrl'}
   .col-md-8
     .col-md-12
@@ -5,26 +10,49 @@
         %span.glyphicon.glyphicon-plus
         New group
       %hr
-    .col-md-4{style: "padding-right:20px; border-right: 1px solid #ccc;"}
+    .col-md-3{style: "padding-right:20px; border-right: 1px solid #ccc;"}
       %ul.nav.nav-pills.nav-stacked
         %li{'ng-repeat' => 'group in groups', 'ng-class' => "group == selectedGroup ? 'active' : ''"}
           %a{'ng-click' => 'selectGroup(group)'}
             {{group.name}}
             %span.badge.pull-right
               {{group.lessons_count}}
-    .col-md-8
-      .row
-        .pull-right{'ng-if' => 'selectedGroup'}
-          =button_tag :class => 'btn btn-default', 'data-toggle' => "modal", 'data-target' => "#newLessonModal" do
+    .col-md-9
+      .row{'style' => 'margin-left:5px'}
+        .pull-left{'style' => 'width:78%'}
+          %input#lesson_url.form-control{name: "lesson[url]", "ng-model" => "newLesson.url", type: "text", placeholder: 'Link'}
+        .pull-right{'ng-if' => 'selectedGroup', 'style' => 'width:20%'}
+          =button_tag :class => 'btn btn-sm btn-default', "ng-click" => 'createLesson()' do
             %span.glyphicon.glyphicon-plus
             New Lesson
+      .row{'ng-if' => 'newLesson.url', 'style' => "margin-top:10px; margin-left:5px"}
+        %textarea#lesson_summary.form-control{name: "lesson[summary]", "ng-model" => "newLesson.summary", "rows" => "5", placeholder: "Summary"}
+      .row{'ng-if' => 'newLesson.url', 'style' => 'margin-left:5px'}
+        .selector-wrapper
 
-      .list-group{'style' => 'margin-top:20px'}
-        %a.list-group-item{'ng-repeat' => 'lesson in lessons'}
-          %b.list-group-item-heading
-            {{lesson.title}}
-          %p.list-group-item-text
-            {{lesson.summary}}
+
+      -#.list-group{'style' => 'margin-top:20px'}
+      -#  %a.list-group-item{'ng-repeat' => 'lesson in lessons', 'ng-href' => '{{lesson.external_url}}'}
+      -#    .list-group-item-text
+      -#      %div{"style" => "width:80px; float:left"}
+      -#        %img{"src"=>"{{lesson.thumbnail_url}}", "width" => "80"}
+      -#      %div{"style" => "margin-left: 100px"}
+      -#        %b
+      -#          {{lesson.title}}
+      -#        %p
+      -#          {{lesson.summary}}
+      -#      %div{"style" => "clear:both"}
+
+      %ul.media-list{'style' => 'margin-top:20px'}
+        %li.media{'ng-repeat' => 'lesson in lessons', 'ng-href' => '{{lesson.external_url}}'}
+          %a.pull-left
+            %img.media-object{"src" => "{{lesson.thumbnail_url}}", "width" => "80"}
+          .media-body
+            %b.media-heading
+              %a{'ng-href' => '{{lesson.external_url}}'}
+                {{lesson.title}}
+            %p
+              {{lesson.summary}}
   .col-md-4
     %h4 Feed
 
@@ -52,25 +80,3 @@
         .modal-footer
           %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
           %button.btn.btn-primary{type: "button", 'ng-click' => 'createGroup()'} Create
-
-  #newLessonModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "newLessonModal", role: "dialog", tabindex: "-1"}
-    .modal-dialog
-      .modal-content
-        .modal-header
-          %button.close{"data-dismiss" => "modal", type: "button"}
-            %span{"aria-hidden" => "true"} ×
-            %span.sr-only Close
-          %h4#myModalLabel.modal-title New Lesson
-        .modal-body
-          .form-group
-            %label{for: "lesson_title"} Title
-            %input#lesson_title.form-control{name: "lesson[title]", "ng-model" => "newLesson.title", type: "text"}
-          .form-group
-            %label{for: "lesson_url"} Url
-            %input#lesson_title.form-control{name: "lesson[url]", "ng-model" => "newLesson.url", type: "text"}
-          .form-group
-            %label{for: "lesson_summary"} Summary
-            %textarea#lesson_summary.form-control{name: "lesson[summary]", "ng-model" => "newLesson.summary", "rows" => "10"}
-        .modal-footer
-          %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} Close
-          %button.btn.btn-primary{type: "button", "ng-click" => 'createLesson()'} Create

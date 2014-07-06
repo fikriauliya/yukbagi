@@ -39,6 +39,49 @@ myApp.controller('PageCtrl', [
 
     $scope.createLesson = () ->
       console.log("New lesson")
+      $('.selector-wrapper').addInputs($('#lesson_url').data('preview'));
+
+#      original_url = $('input[name="original_url"').val()
+      url = decodeURIComponent($('input[name="url"').val())
+      type = $('input[name="type"').val()
+#      provider_url = $('input[name="provider_url"').val()
+#      provider_display = $('input[name="provider_display"').val()
+      provider_name = decodeURIComponent($('input[name="provider_name"').val())
+      favicon_url = decodeURIComponent($('input[name="favicon_url"').val())
+      title = decodeURIComponent($('input[name="title"').val())
+      description = decodeURIComponent($('input[name="description"').val())
+      thumbnail_url = decodeURIComponent($('input[name="thumbnail_url"').val())
+#      author_name = $('input[name="author_name"').val()
+#      author_url = $('input[name="author_url"').val()
+#      media_type = $('input[name="media_type"').val()
+#      media_html = $('input[name="media_html"').val()
+#      media_width = $('input[name="media_width"').val()
+#      media_height = $('input[name="media_height"').val()
+
+#      console.log('original_url' + original_url)
+      console.log('url' + url)
+      console.log('type' + type)
+#      console.log('provider_url' + provider_url)
+#      console.log('provider_display' + provider_display)
+      console.log('provider_name' + provider_name)
+      console.log('favicon_url' + favicon_url)
+      console.log('title' + title)
+      console.log('description' + description)
+      console.log('thumbnail_url' + thumbnail_url)
+#      console.log('author_name' + author_name)
+#      console.log('author_url' + author_url)
+#      console.log('media_type' + media_type)
+#      console.log('media_html' + media_html)
+#      console.log('media_width' + media_width)
+#      console.log('media_height' + media_height)
+
+      $scope.newLesson.external_url = url
+      $scope.newLesson.tyoe = type
+      $scope.newLesson.provider_name = provider_name
+      $scope.newLesson.favicon_url = favicon_url
+      $scope.newLesson.title = title
+      $scope.newLesson.description = description
+      $scope.newLesson.thumbnail_url = thumbnail_url
 
       $scope.newLesson.$save({group_id: $scope.selectedGroup.id},
         (u, header) ->
@@ -79,4 +122,6 @@ myApp.controller('PageCtrl', [
     $scope.newLesson = new Lesson()
     $scope.selectedGroup = null
     $scope.refreshGroup()
+
+    $('#lesson_url').preview({key:'635853e17b764c629a82aa3628f949d5'})
 ])
