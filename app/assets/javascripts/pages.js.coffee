@@ -28,6 +28,7 @@ myApp.controller('PageCtrl', [
           $('#newGroupModal').modal('hide')
 
           $scope.refreshGroup()
+          $scope.newGroup = new Group()
       );
 
     $scope.selectGroup = (group) ->
@@ -85,11 +86,10 @@ myApp.controller('PageCtrl', [
 
       $scope.newLesson.$save({group_id: $scope.selectedGroup.id},
         (u, header) ->
-          console.log("Saved, close modal")
-          $('#newLessonModal').modal('hide')
-
           $scope.refreshGroupCounter($scope.selectedGroup)
           $scope.refreshLessons()
+
+          $scope.newLesson = new Lesson()
       )
 
     $scope.refreshGroup = () ->
