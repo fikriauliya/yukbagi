@@ -59,23 +59,6 @@ myApp.controller('PageCtrl', [
 #      media_width = $('input[name="media_width"').val()
 #      media_height = $('input[name="media_height"').val()
 
-#      console.log('original_url' + original_url)
-      console.log('url' + url)
-      console.log('type' + type)
-#      console.log('provider_url' + provider_url)
-#      console.log('provider_display' + provider_display)
-      console.log('provider_name' + provider_name)
-      console.log('favicon_url' + favicon_url)
-      console.log('title' + title)
-      console.log('description' + description)
-      console.log('thumbnail_url' + thumbnail_url)
-#      console.log('author_name' + author_name)
-#      console.log('author_url' + author_url)
-#      console.log('media_type' + media_type)
-#      console.log('media_html' + media_html)
-#      console.log('media_width' + media_width)
-#      console.log('media_height' + media_height)
-
       $scope.newLesson.external_url = url
       $scope.newLesson.tyoe = type
       $scope.newLesson.provider_name = provider_name
