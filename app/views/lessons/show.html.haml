@@ -3,12 +3,16 @@
   %meta{property: "og:title", content: @lesson.title}
   %meta{property: "og:description", content: @lesson.summary}
   %meta{property: "og:image", content: @lesson.thumbnail_url}
+  %script{src: "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53bbbc685826fb13", type: "text/javascript"}
 
 .media
   %a.pull-left
     %img.media-object{"width" => "300", src: @lesson.thumbnail_url}
+
   .media-body
-    %b.media-heading
+    %h3.media-heading
       =link_to @lesson.title, @lesson.external_url
+    .addthis_sharing_toolbox
+
     %p
       =@lesson.summary
