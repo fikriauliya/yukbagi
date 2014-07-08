@@ -46,10 +46,10 @@
       %ul.media-list{'style' => 'margin-top:20px'}
         %li.media{'ng-repeat' => 'lesson in lessons', 'ng-href' => '{{lesson.external_url}}'}
           %a.pull-left
-            %img.media-object{"src" => "{{lesson.thumbnail_url}}", "width" => "80"}
+            %img.media-object{"ng-src" => "{{lesson.thumbnail_url}}", "width" => "80"}
           .media-body
             %b.media-heading
-              %a{'ng-href' => '{{lesson.external_url}}'}
+              %a{'ng-href' => '{{lesson.html_url}}'}
                 {{lesson.title}}
             %p
               {{lesson.summary}}
