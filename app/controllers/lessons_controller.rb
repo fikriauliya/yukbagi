@@ -12,6 +12,9 @@ class LessonsController < ApplicationController
   # GET /lessons/1
   # GET /lessons/1.json
   def show
+    @profile = Profile.new({user: current_user})
+    @group = Group.find_by_id(params[:group_id])
+    @current_url = request.original_url
   end
 
   # GET /lessons/new

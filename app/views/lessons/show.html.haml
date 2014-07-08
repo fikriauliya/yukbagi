@@ -1,18 +1,14 @@
-%p#notice= notice
+-content_for :header do
+  %meta{property: "og:url", content: @current_url}
+  %meta{property: "og:title", content: @lesson.title}
+  %meta{property: "og:description", content: @lesson.summary}
+  %meta{property: "og:image", content: @lesson.thumbnail_url}
 
-%p
-  %b Title:
-  = @lesson.title
-%p
-  %b Summary:
-  = @lesson.summary
-%p
-  %b Group:
-  = @lesson.group_id
-%p
-  %b Order no:
-  = @lesson.order_no
-
-= link_to 'Edit', edit_lesson_path(@lesson)
-\|
-= link_to 'Back', lessons_path
+.media
+  %a.pull-left
+    %img.media-object{"width" => "300", src: @lesson.thumbnail_url}
+  .media-body
+    %b.media-heading
+      =link_to @lesson.title, @lesson.external_url
+    %p
+      =@lesson.summary
