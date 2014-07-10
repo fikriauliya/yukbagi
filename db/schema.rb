@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140706042419) do
+ActiveRecord::Schema.define(version: 20140710094624) do
 
   create_table "groups", force: true do |t|
     t.integer  "user_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140706042419) do
     t.string   "favicon_url"
     t.string   "description"
     t.string   "thumbnail_url"
+    t.string   "external_url_html"
   end
 
   create_table "users", force: true do |t|

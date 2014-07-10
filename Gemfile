@@ -51,3 +51,4 @@ gem "figaro"
 gem 'omniauth-facebook'
 gem 'angularjs-rails'
 gem 'gon'
+gem 'auto_html'

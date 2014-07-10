@@ -7,7 +7,10 @@
 
 .media
   %a.pull-left
-    %img.media-object{"width" => "300", src: @lesson.thumbnail_url}
+    - if @lesson.external_url_html == @lesson.external_url
+      %img.media-object{"width" => "300", src: @lesson.thumbnail_url}
+    -else
+      =@lesson.external_url_html
 
   .media-body
     %h3.media-heading
