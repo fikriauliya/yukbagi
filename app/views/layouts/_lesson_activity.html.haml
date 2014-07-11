@@ -1,5 +1,5 @@
 %b
-  = User.find(activity.owner_id).name
+  =link_to(User.find(activity.owner_id).name, profile_path(activity.owner_id))
 added:
 = render_activity(activity)
 %br
