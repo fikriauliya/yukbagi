@@ -6,7 +6,7 @@ class LessonsController < ApplicationController
   def index
     @profile = Profile.new({user: current_user})
     @group = Group.find_by_id(params[:group_id])
-    @lessons = @group.lessons
+    @lessons = @group.lessons.order(:created_at).reverse_order
   end
 
   # GET /lessons/1
