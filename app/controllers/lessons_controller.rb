@@ -36,6 +36,12 @@ class LessonsController < ApplicationController
 
     respond_to do |format|
       if @lesson.save
+        @lesson.create_activity :create, owner: current_user,
+                                parameters: { title: @lesson.title, summary: @lesson.summary,
+                                              thumbnail_url: @lesson.thumbnail_url,
+                                              url: profile_group_lesson_url(@profile, @group, @lesson)
+                                }
+
         format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
         format.json { render :show, status: :created, location: [@profile, @group, @lesson] }
       else

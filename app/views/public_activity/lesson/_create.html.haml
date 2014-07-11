@@ -1,0 +1,8 @@
+.media
+  %a.pull-left
+    %img.media-object{"width" => "100", src: activity.parameters[:thumbnail_url]}
+  .media-body
+    %b.media-heading
+      =link_to activity.parameters[:title], activity.parameters[:url]
+    %p
+      =activity.parameters[:summary]

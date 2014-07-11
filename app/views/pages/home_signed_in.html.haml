@@ -55,7 +55,9 @@
               {{lesson.summary}}
   .col-md-4
     %h4 Feed
-
+    %hr
+    - @activities.each do |activity|
+      = render_activity(activity, layout: 'lesson_activity')
 
   / Modal
   #newGroupModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "newGroupModal", role: "dialog", tabindex: "-1"}

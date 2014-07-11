@@ -1,5 +1,7 @@
 include AutoHtml
 class Lesson < ActiveRecord::Base
+  include PublicActivity::Common
+
   belongs_to :group, counter_cache: true
 
   auto_html_for :external_url do

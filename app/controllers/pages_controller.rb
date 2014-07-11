@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
   def home
+    @activities = PublicActivity::Activity.all
+
     if user_signed_in?
       @groups = Group.where(user_id: current_user.id)
       @new_group = Group.new
